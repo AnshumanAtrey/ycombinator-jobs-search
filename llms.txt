@@ -42,14 +42,16 @@ Source: https://github.com/AnshumanAtrey/ycombinator-jobs-search
 
 ## Pricing
 
-- $0.00002 per job (Job event) on the Free and Starter plans; $0.000017 on Scale (SILVER); $0.000015 on Business (GOLD) and above
-- $0.000025 per job with full details (Job with details event); $0.000021 on SILVER; $0.000018 on GOLD and above
-- $0.005 per run start, per GB of memory ($0.005 at the default 1 GB), on every plan
+- $0.000019 per job (Job event) on the Free and Starter plans; $0.000016 on Scale (SILVER); $0.000014 on Business (GOLD) and above
+- $0.000019 per job with full details (Job with details event), the same as a Job: $0.000016 on SILVER; $0.000014 on GOLD and above
+- $0.015 per run start, per GB of memory ($0.015 at the default 1 GB), on every plan: every run reads the job lists of 1,500 companies
 - A checked link that is closed or not found is one Job event
+- Prices are the measured Apify cost of each event at each plan's rates plus a markup of 100% (Free) down to 80% (enterprise)
 
-Typical run, 100 newest jobs: about $0.007
+Typical run, 100 newest jobs: about $0.017
+1,000 jobs: about $0.034
 Every open YC job (about 6,200): about $0.13
-Apify's free $5 monthly credit covers about 71,000 jobs in runs of 100.
+Apify's free $5 monthly credit covers about 29,000 jobs in runs of 100.
 
 ## When to use
 
@@ -124,8 +126,8 @@ Apify's free $5 monthly credit covers about 71,000 jobs in runs of 100.
 
 ## Differentiators vs alternatives
 
-- vs nomad-agent/ycombinator-was-scraper (136 users in 30 days, $0.0001 a job): reads every job instead of at most 200 a run, dates each job from its YC page (its README sample is a month off the page), and filters by batch, visa, pay, equity, team size and stage; it costs less for runs under about 60 jobs and adds the description to every row.
-- vs parsebird/yc-jobs-scraper ($0.00199 a job): about 100 times less per job, with the exact posting date and newest-first order.
+- vs nomad-agent/ycombinator-was-scraper (136 users in 30 days, $0.0001 a job, no start fee): reads every job instead of at most 200 a run, dates each job from its YC page (its README sample is a month off the page), and filters by batch, visa, pay, equity, team size and stage; nomad-agent costs less for runs under about 185 jobs on the Free and Starter plans and for every run on Scale and Business, and adds the description to every row.
+- vs parsebird/yc-jobs-scraper ($0.00199 a job): about 100 times less per job and less in all from 8 jobs a run, with the exact posting date and newest-first order.
 - vs automation-lab/ycombinator-jobs-scraper: every open YC job instead of the 20 on ycombinator.com/jobs, with exact dates.
 - vs memo23/y-combinator-scraper: every hiring company's jobs instead of YC's role and place pages; memo23 also reads the company directory.
 

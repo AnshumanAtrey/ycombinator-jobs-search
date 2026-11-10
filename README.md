@@ -2,12 +2,12 @@
 
 Y Combinator jobs scraper and API: search every open job at YC startups on Work at a Startup, YC's job board, live by job title, role, city, country or region, YC batch, visa terms, pay, equity, team size and posting date, and get each job's title, company, YC batch, places, remote or office, salary and equity as shown and as numbers, visa terms, years of experience, team size, company stage and its exact posting date, newest first. Turn on full details for the description as text and HTML.
 
-Use it as a Work at a Startup API or YC jobs API with no login and no API key, a workatastartup.com and ycombinator.com/jobs scraper, or a daily YC startup job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent over MCP, and export JSON, CSV or Excel. It reads the job list of every YC company that is hiring (1,500 companies, 6,300+ open jobs on 2026-11-10) at the moment of your run. Available as an [Apify Actor](https://apify.com/anshumanatrey/ycombinator-jobs-search). $0.00002 per job, $0.000025 with full details, $0.005 per run start at the default 1 GB.
+Use it as a Work at a Startup API or YC jobs API with no login and no API key, a workatastartup.com and ycombinator.com/jobs scraper, or a daily YC startup job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent over MCP, and export JSON, CSV or Excel. It reads the job list of every YC company that is hiring (1,500 companies, 6,300+ open jobs on 2026-11-10) at the moment of your run. Available as an [Apify Actor](https://apify.com/anshumanatrey/ycombinator-jobs-search). $0.000019 per job, the same with full details, and $0.015 per run start at the default 1 GB.
 
 ## What does it do?
 
 - **Every open YC job, live.** It reads YC's company directory for every company that is hiring, then each company's job list: 6,316 jobs at 1,500 companies on 2026-11-10, against the 6,323 Work at a Startup counted itself that hour (608 of 608 jobs sampled from its own role pages and search were found).
-- **The exact posting date, newest first.** YC's job cards say "3 days" or "over 1 year". Each job's own page states the moment it was posted, and this actor reads it for every row it saves. YC numbers its jobs in posting order (no exception among 2,000 rows checked), so the newest come first and a short list costs only the pages it opens.
+- **The exact posting date, newest first.** YC's job cards say "3 days" or "over 1 year". Each job's own page states the moment it was posted, and this actor reads it for every row it saves. YC numbers its jobs in posting order (every open job since 2021; 5 of 6,189 from 2019 and 2020 are out of order), so the newest come first and a short list costs only the pages it opens.
 - **The last month by default.** 86% of the jobs open on YC were posted more than 30 days ago, some 8 years ago, so Posted in the last (`postedWithin`) starts at 30 days. Pick any time to get them all.
 - **YC's own filters.** Role (engineering, design, sales, product, operations, and kinds such as backend or machine learning), YC batch (W25, Summer 2024, or 2025 for a whole year), visa terms (sponsors a visa, no visa needed, US only), minimum pay in US dollars, equity only, team size and company stage.
 - **Pay and equity as numbers.** Pay is shown on 4 of 5 YC jobs: you get YC's text ("$150K - $190K", "EUR 60K - 80K", "$50 - $80 / hourly") and the numbers with their currency and period. Equity comes as text and as low and high percentages.
@@ -42,21 +42,21 @@ The five Y Combinator job actors with the most users in the last 30 days on 2026
 
 ## How much does it cost to scrape Y Combinator jobs?
 
-Pay per event: $0.02 per 1,000 jobs, or $0.025 per 1,000 with full details, plus $0.005 per run at the default 1 GB. Apify's free $5 monthly credit covers about 71,000 jobs in runs of 100. Platform usage is included, and there is no monthly fee.
+Pay per event: $0.019 per 1,000 jobs, the same with full details, plus $0.015 per run at the default 1 GB. Apify's free $5 monthly credit covers about 29,000 jobs in runs of 100. Platform usage is included, and there is no monthly fee.
 
 | Event | Price | When it is charged |
 |---|---|---|
-| Job | $0.00002 | One saved job, and one checked link that is closed or not found |
-| Job with details | $0.000025 | One saved job with full details on |
-| Run start | $0.005 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.005 at the default 1 GB |
+| Job | $0.000019 | One saved job, and one checked link that is closed or not found |
+| Job with details | $0.000019 | One saved job with full details on: the job's page is read for its date anyway, so details cost no more |
+| Run start | $0.015 per GB of memory | Charged by Apify when a run starts: once up to 1 GB and once more for each extra GB, so $0.015 at the default 1 GB |
 
-Y Combinator Jobs Scraper's Apify Store header shows the lowest discount-tier price, the GOLD price: $0.015 per 1,000 jobs. FREE and BRONZE users (Apify's Free and Starter plans) pay $0.00002 a job and $0.000025 with full details. SILVER (Scale) pays $0.000017 and $0.000021, and GOLD (Business) and the enterprise tiers $0.000015 and $0.000018. The run start is a flat fee on every plan, $0.005 per GB of memory, and the header never shows it.
+Y Combinator Jobs Scraper's Apify Store header shows the lowest discount-tier price, the GOLD price: $0.014 per 1,000 jobs. FREE and BRONZE users (Apify's Free and Starter plans) pay $0.000019 a job, SILVER (Scale) $0.000016, and GOLD (Business) and the enterprise tiers $0.000014, with full details or without. Each price is what a job costs on Apify at that plan's own rates, measured on Apify runs, plus a markup of 100% on the Free plan that falls to 80% on the enterprise tiers. The run start is a flat fee on every plan, $0.015 per GB of memory, and the header never shows it: it pays for reading the job lists of 1,500 companies, which every run does.
 
 | Run (Free and Starter price, default memory) | Cost |
 |---|---|
-| 100 newest jobs | $0.007 |
-| 100 jobs with full details | $0.0075 |
-| 1,000 jobs | $0.025 |
+| 100 newest jobs | $0.017 |
+| 100 jobs with full details | $0.017 |
+| 1,000 jobs | $0.034 |
 | Every open job, about 6,200 | $0.13 |
 
 ## How does the price compare with other Y Combinator scrapers?
@@ -74,9 +74,9 @@ Every actor on the Apify Store whose title names Y Combinator, YC or Work at a S
 | santamaria-automations/workatastartup-scraper | 11 | $0.003, $0.005 with details | $0.001 | Work at a Startup; posting date always empty |
 | hipersoft/yc-jobs-scraper | 9 | $0.003 | $0.00005 | Every open job, with how long ago it was posted |
 | benthepythondev/yc-jobs-scraper | 5 | $0.003 | $0.00005 | Work at a Startup by role or keyword |
-| This actor | new | $0.00002, $0.000025 with details | $0.005 per GB | Every hiring YC company's jobs, live, with exact dates |
+| This actor | new | $0.000019, the same with details | $0.015 per GB | Every hiring YC company's jobs, live, with exact dates |
 
-Where others are cheaper: this actor's run start, $0.005, is above most others', so a run of fewer than about 60 jobs costs less on nomad-agent, which has no start fee, and a run of one job costs less on most of them. From about 60 jobs a run, this actor costs the least, and per job it costs the least of all. Where others do more: nomad-agent gives every row its description at its base price and skips jobs you already received; memo23, scrapesage and parsebird add founders and company profiles; scrapesage and memo23 read the whole company directory, hiring or not.
+Where others are cheaper: this actor's run start, $0.015, is the highest in the table, because every run reads the job lists of all 1,500 hiring YC companies. On the Free and Starter plans, a run of fewer than about 185 jobs costs less on nomad-agent, which has no start fee and returns at most 200 jobs a run; on the Scale and Business plans, nomad-agent costs less for every run it can do; and automation-lab's 20 jobs cost less there. From 8 jobs a run, this actor costs less than each of the other seven, and per job it costs the least of all. Where others do more: nomad-agent gives every row its description at its base price and skips jobs you already received; memo23, scrapesage and parsebird add founders and company profiles; scrapesage and memo23 read the whole company directory, hiring or not.
 
 ## Which inputs does it take?
 
@@ -97,7 +97,7 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 | Only with equity (`withEquity`) | Keeps the jobs that show an equity range |
 | Visa terms (`visa`) | will-sponsor, not-required or us-only |
 | Number of jobs (`maxJobs`) | How many, newest first: 100 by default, 0 for every match |
-| Full details (`includeDetails`) | Adds the description as text and HTML, whether the job offers equity, and the city, state and country of its first place |
+| Full details (`includeDetails`) | Adds the description as text and HTML, whether the job offers equity, and the city, state and country of its first place, at the same price |
 | Leave out words (`excludeTerms`) | Drops jobs whose title has these words, such as senior or intern |
 | Job type (`employmentType`) | full-time, contract or intern |
 | Wider match (`searchDescriptions`) | Also keeps jobs whose description holds your words; slower, as each job that can match is opened |
@@ -176,7 +176,7 @@ Full details add `description`, `descriptionHtml`, `offersEquity`, `city`, `regi
 
 ## How fast is it?
 
-About half a minute. Measured locally on 2026-11-10: the form as it opens (100 newest jobs) took 27 s and 1,612 calls, software engineer in San Francisco 26 s, 30 sales jobs in New York with full details 28 s, every YC filter at once 25 s, and 2,000 jobs 86 s (23 jobs a second, 136 MB of memory). Most of a run is reading 1,500 company job lists, 32 at a time; then each job saved is one more page. Apify's timing at each memory size is measured on its servers before the price is set.
+About 40 seconds at the default 1 GB. Measured on Apify on 2026-11-10 (build 1.0.2): the form as it opens (100 newest jobs) took 39 s and 1,612 calls; software engineer 47 s; founding engineer in San Francisco 41 s; 50 sales jobs in New York with full details 45 s; every YC filter at once 41 s; 1,000 jobs 78 s; and every open job, 6,189 of them, 279 s (22 jobs a second, 217 MB of memory). A word searched in descriptions takes longer, since each job that can match is opened: rust took 97 s and 2,806 calls for 12 jobs. Most of a run is reading 1,500 company job lists, 32 at a time, which is CPU-bound: at 512 MB the same searches took 61 to 94 s for 11% less cost, and at 2 GB software engineer took 21 s for two start events.
 
 ## Common questions
 
@@ -210,7 +210,7 @@ Y Combinator Jobs Scraper needs no YC account and no API key: it reads the same 
 
 ### Does it work on Apify's free plan?
 
-Y Combinator Jobs Scraper works on Apify's free plan, which pays $0.00002 a job plus the $0.005 run start at the default 1 GB. The free $5 monthly credit pays for about 71,000 jobs in runs of 100, at $0.007 a run.
+Y Combinator Jobs Scraper works on Apify's free plan, which pays $0.000019 a job plus the $0.015 run start at the default 1 GB. The free $5 monthly credit pays for about 29,000 jobs in runs of 100, at $0.017 a run.
 
 ### How often should I run it?
 
@@ -280,6 +280,7 @@ Y Combinator Jobs Scraper reads public job postings, the pages any visitor sees 
 - Pay is shown on about 4 of 5 jobs. An amount that cannot be a year's pay (a placeholder such as $1, or $120 typed for $120K) stays in `salary` as YC shows it, with no numbers.
 - Minimum pay compares jobs paid in US dollars only; there is no currency conversion.
 - A job posted twice by one company with the same title at the same place is delivered once, the newest.
+- YC numbers its jobs in posting order, and this actor opens the jobs that can match in that order. Every open job since 2021 follows it; 5 of the 6,189 open on 2026-11-10, posted in 2019 and 2020, are a few days to months out of order, so a search reaching back to 2020 can keep one and leave out the other where Number of jobs (`maxJobs`) cuts.
 - Applying to a job takes a YC account; the actor never signs in.
 
 ## Who maintains it?
