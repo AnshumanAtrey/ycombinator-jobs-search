@@ -1,0 +1,338 @@
+{
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only, and only once the actor is public). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries yc. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json.",
+    "options": {
+        "build": "latest",
+        "memoryMbytes": 1024,
+        "timeoutSecs": 1800
+    },
+    "tasks": [
+        {
+            "name": "yc-jobs-last-24-hours",
+            "title": "Get the newest Y Combinator startup jobs of the last 24 hours",
+            "description": "Get every job YC startups posted on Work at a Startup in the last day, newest first, with the company, its YC batch, pay, equity, visa terms and the exact posting time. Schedule it daily for a fresh feed of YC jobs.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "postedWithin": "24 hours",
+                "role": [],
+                "batch": [],
+                "visa": [],
+                "maxJobs": 0,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "New Y Combinator Jobs Posted in the Last 24 Hours",
+            "seoDescription": "Every job YC startups posted on Work at a Startup in the last day, with salary, equity, visa terms and the exact posting time. Run it daily for a feed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "yc-software-engineer-jobs-san-francisco",
+            "title": "Find software engineer jobs at YC startups in San Francisco",
+            "description": "Search Work at a Startup for software engineer jobs at Y Combinator startups in San Francisco, newest first, with pay, equity, the YC batch, visa terms and the exact posting date. Every title holds both words.",
+            "input": {
+                "searchTerms": [
+                    "software engineer"
+                ],
+                "location": [
+                    "San Francisco"
+                ],
+                "workType": [],
+                "postedWithin": "30 days",
+                "role": [],
+                "batch": [],
+                "visa": [],
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Software Engineer Jobs at YC Startups in San Francisco",
+            "seoDescription": "The newest software engineer jobs at Y Combinator startups in San Francisco, with salary, equity, YC batch, visa terms and apply link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "experienceYears",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "yc-remote-jobs",
+            "title": "Find remote jobs at Y Combinator startups",
+            "description": "Get the newest remote jobs at YC startups from Work at a Startup: jobs that list a Remote place, such as Remote (US) or Remote (anywhere), with the company, pay, equity and the countries the job is open to.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [
+                    "remote"
+                ],
+                "postedWithin": "30 days",
+                "role": [],
+                "batch": [],
+                "visa": [],
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Remote Jobs at Y Combinator Startups",
+            "seoDescription": "The newest remote jobs at YC startups from Work at a Startup, with salary, equity, visa terms, the countries they hire in and the exact posting date.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "workType",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "yc-jobs-visa-sponsorship",
+            "title": "Find YC startup jobs that sponsor a visa",
+            "description": "Get the newest jobs at Y Combinator startups whose companies will sponsor a US visa, as each job on Work at a Startup states it, with the company, its batch, pay and equity.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "postedWithin": "30 days",
+                "role": [],
+                "batch": [],
+                "visa": [
+                    "will-sponsor"
+                ],
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Y Combinator Startup Jobs With Visa Sponsorship",
+            "seoDescription": "The newest jobs at YC startups that sponsor a US visa, from Work at a Startup, with salary, equity, YC batch and the exact posting date.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "visa",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "yc-founding-engineer-jobs",
+            "title": "Find founding engineer jobs at Y Combinator startups",
+            "description": "Search Work at a Startup for founding engineer jobs at YC startups, newest first, with the company, its batch and team size, pay and equity ranges and visa terms.",
+            "input": {
+                "searchTerms": [
+                    "founding engineer"
+                ],
+                "location": [],
+                "workType": [],
+                "postedWithin": "30 days",
+                "role": [],
+                "batch": [],
+                "visa": [],
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Founding Engineer Jobs at Y Combinator Startups",
+            "seoDescription": "The newest founding engineer jobs at YC startups, with salary and equity ranges, team size, YC batch and visa terms, from Work at a Startup.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "yc-startup-internships",
+            "title": "Find internships at Y Combinator startups",
+            "description": "Get the newest internships at YC startups from Work at a Startup, with the company, its batch, the pay, the student year asked for and the exact posting date.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "postedWithin": "any time",
+                "role": [],
+                "batch": [],
+                "visa": [],
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [
+                    "intern"
+                ],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Internships at Y Combinator Startups",
+            "seoDescription": "The newest internships at YC startups from Work at a Startup, with pay, the student year asked for, YC batch and the exact posting date.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "employmentType",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "yc-jobs-latest-batches",
+            "title": "Find jobs at startups of the latest YC batches",
+            "description": "Get the newest jobs at companies of YC batches from 2025 and 2026 (Winter, Spring, Summer and Fall), from Work at a Startup, with pay, equity, team size and visa terms.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "postedWithin": "30 days",
+                "role": [],
+                "batch": [
+                    "2026",
+                    "2025"
+                ],
+                "visa": [],
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Jobs at the Newest Y Combinator Startups (2025, 2026)",
+            "seoDescription": "The newest jobs at startups from the latest YC batches, 2025 and 2026, with salary, equity, team size, visa terms and the exact posting date.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "batch",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "yc-machine-learning-jobs",
+            "title": "Find machine learning and AI engineer jobs at YC startups",
+            "description": "Get the newest machine learning and AI engineering jobs at Y Combinator startups, as YC files them on Work at a Startup, with pay, equity, the company and its batch.",
+            "input": {
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "postedWithin": "30 days",
+                "role": [
+                    "machine-learning",
+                    "ai-engineer"
+                ],
+                "batch": [],
+                "visa": [],
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Machine Learning and AI Jobs at YC Startups",
+            "seoDescription": "The newest machine learning and AI engineer jobs at Y Combinator startups, with salary, equity, YC batch, visa terms and the exact posting date.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "role",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "yc-startup-jobs-india",
+            "title": "Find jobs at Y Combinator startups in India",
+            "description": "Get the newest jobs at YC startups in India, in cities such as Bengaluru, Mumbai, Delhi and Hyderabad or remote in India, from Work at a Startup, with pay in rupees or dollars and the exact posting date.",
+            "input": {
+                "searchTerms": [],
+                "location": [
+                    "India"
+                ],
+                "workType": [],
+                "postedWithin": "30 days",
+                "role": [],
+                "batch": [],
+                "visa": [],
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Y Combinator Startup Jobs in India",
+            "seoDescription": "The newest jobs at YC startups in India, Bengaluru, Mumbai, Delhi and remote, with salary, equity, YC batch and the exact posting date.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "yc-product-manager-jobs",
+            "title": "Find product manager jobs at Y Combinator startups",
+            "description": "Search Work at a Startup for product manager jobs at YC startups, newest first, with pay, equity, the company, its batch and team size.",
+            "input": {
+                "searchTerms": [
+                    "product manager"
+                ],
+                "location": [],
+                "workType": [],
+                "postedWithin": "30 days",
+                "role": [],
+                "batch": [],
+                "visa": [],
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "employmentType": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
+            },
+            "seoTitle": "Product Manager Jobs at Y Combinator Startups",
+            "seoDescription": "The newest product manager jobs at YC startups, with salary, equity, team size, YC batch and visa terms, from Work at a Startup.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        }
+    ]
+}

@@ -1,0 +1,368 @@
+{
+    "title": "Y Combinator Jobs Search",
+    "description": "Type a job title and press Start: you get the newest matching jobs at Y Combinator startups, from Work at a Startup (YC's job board, 6,300+ open jobs at 1,500 YC companies), each with its exact posting date. Every other field is optional. Press Start with the form empty for the newest jobs of every kind.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "searchTerms": {
+            "title": "Job titles to find (searchTerms)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type the job titles or keywords to find, one per line, for example software engineer or founding engineer. A job matches when its title has every word of a line: frontend also finds Front-End. Leave it empty for the newest jobs of every kind. A pasted YC job link is checked, a YC company link searches that company, and a ycombinator.com/jobs/role page searches its role and place.",
+            "placeholderValue": "software engineer",
+            "example": [
+                "software engineer"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "location": {
+            "title": "Where the job is (location)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type where the jobs should be: cities, states, countries or regions, one per line, for example San Francisco, New York, United States, India, Europe or Worldwide. A country finds its jobs and the jobs remote in it. Remote typed alone asks for remote jobs; typed next to a city it changes nothing, so pick remote in Remote or office for remote jobs only. Leave it empty for anywhere.",
+            "placeholderValue": "San Francisco",
+            "example": [
+                "San Francisco"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "workType": {
+            "title": "Remote or office (workType)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick remote, hybrid or onsite (at the office), or several. Leave it empty for all of them. A YC job that lists a Remote place, such as Remote (US), is remote; one that names only offices is onsite, and hybrid when its text says so. Typed words such as wfh or office work too.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "remote",
+                    "hybrid",
+                    "onsite"
+                ],
+                "enumTitles": [
+                    "Remote",
+                    "Hybrid",
+                    "At the office (onsite)"
+                ]
+            },
+            "example": [
+                "remote"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "postedWithin": {
+            "title": "Posted in the last (postedWithin)",
+            "type": "string",
+            "editor": "select",
+            "description": "Pick how new the jobs must be: posted in the last 24 hours, 3, 7, 14 or 30 days. 30 days, the default, keeps the last month's jobs, newest first; any time keeps every open job, some posted years ago (86% of YC's open jobs are older than a month). The date is each job's exact posting time from its YC page. You can also type your own period, such as 48 hours or 2 weeks.",
+            "enumSuggestedValues": [
+                "24 hours",
+                "3 days",
+                "7 days",
+                "14 days",
+                "30 days",
+                "any time"
+            ],
+            "enumTitles": [
+                "24 hours",
+                "3 days",
+                "7 days",
+                "14 days",
+                "30 days",
+                "any time"
+            ],
+            "example": "7 days",
+            "default": "30 days",
+            "nullable": true
+        },
+        "role": {
+            "title": "Job role (role)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the job role: the role areas YC files every job under: engineering, design, product, science, sales, marketing, support, operations, recruiting, finance or legal, or a kind of engineering: backend, frontend, full-stack, machine-learning, ai-engineer, data-science, devops, mobile (iOS and Android), hardware or robotics. Leave it empty for every role. Same as the role filter of Work at a Startup.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "engineering",
+                    "design",
+                    "product",
+                    "science",
+                    "sales",
+                    "marketing",
+                    "support",
+                    "operations",
+                    "recruiting",
+                    "finance",
+                    "legal",
+                    "backend",
+                    "frontend",
+                    "full-stack",
+                    "machine-learning",
+                    "ai-engineer",
+                    "data-science",
+                    "devops",
+                    "mobile",
+                    "hardware",
+                    "robotics"
+                ],
+                "enumTitles": [
+                    "Engineering",
+                    "Design",
+                    "Product",
+                    "Science",
+                    "Sales",
+                    "Marketing",
+                    "Support",
+                    "Operations",
+                    "Recruiting & HR (recruiting)",
+                    "Finance",
+                    "Legal",
+                    "Backend engineering (backend)",
+                    "Frontend engineering (frontend)",
+                    "Full stack (full-stack)",
+                    "Machine learning (machine-learning)",
+                    "AI engineering (ai-engineer)",
+                    "Data science (data-science)",
+                    "DevOps (devops)",
+                    "Mobile, iOS or Android (mobile)",
+                    "Hardware",
+                    "Robotics"
+                ]
+            },
+            "example": [
+                "engineering"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "experienceYears": {
+            "title": "Experience (experienceYears)",
+            "type": "string",
+            "editor": "textfield",
+            "description": "Type your years of experience: a number such as 3, a range such as 2-5, 5+ for five or more, or fresher. YC states a minimum for each job (3+ years, or Any for new grads), and a job is kept when its minimum is at or below your years: 3 keeps 1+ and 3+ years and leaves out 5+. Internships ask for students and count as 0 years. Leave it empty for every experience.",
+            "example": "3",
+            "nullable": true,
+            "default": null
+        },
+        "batch": {
+            "title": "YC batch (batch)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the YC batches whose companies' jobs to keep, such as W25 (Winter 2025) or S24 (Summer 2024), or a year (2025 keeps all its batches). F is Fall and P is Spring (X25 works too). You can type any batch, such as S21 or Winter 2016. Leave it empty for every batch.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "F26",
+                    "S26",
+                    "P26",
+                    "W26",
+                    "F25",
+                    "S25",
+                    "P25",
+                    "W25",
+                    "2026",
+                    "2025",
+                    "2024"
+                ],
+                "enumTitles": [
+                    "Fall 2026 (F26)",
+                    "Summer 2026 (S26)",
+                    "Spring 2026 (P26)",
+                    "Winter 2026 (W26)",
+                    "Fall 2025 (F25)",
+                    "Summer 2025 (S25)",
+                    "Spring 2025 (P25)",
+                    "Winter 2025 (W25)",
+                    "Every batch of 2026 (2026)",
+                    "Every batch of 2025 (2025)",
+                    "Every batch of 2024 (2024)"
+                ]
+            },
+            "example": [
+                "W25"
+            ],
+            "default": [],
+            "sectionCaption": "YC company and pay",
+            "nullable": true
+        },
+        "companyStage": {
+            "title": "Company stage (companyStage)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the company stages to keep, as YC's directory states them: early (most YC startups), growth or public. Leave it empty for every stage.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "early",
+                    "growth",
+                    "public"
+                ],
+                "enumTitles": [
+                    "Early stage (early)",
+                    "Growth stage (growth)",
+                    "Public company (public)"
+                ]
+            },
+            "example": [
+                "early"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "teamSize": {
+            "title": "Team size (teamSize)",
+            "type": "string",
+            "editor": "select",
+            "description": "Pick or type the company's team size, as YC's directory states it: a range such as 1-10 or 11-50, 1000+ for a thousand or more, or one number. Leave it empty for every size.",
+            "enumSuggestedValues": [
+                "1-10",
+                "11-50",
+                "51-200",
+                "201-1000",
+                "1000+"
+            ],
+            "enumTitles": [
+                "1 to 10 people (1-10)",
+                "11 to 50 people (11-50)",
+                "51 to 200 people (51-200)",
+                "201 to 1,000 people (201-1000)",
+                "Over 1,000 people (1000+)"
+            ],
+            "example": "1-50",
+            "nullable": true,
+            "default": null
+        },
+        "minSalaryUsd": {
+            "title": "Minimum pay, USD (minSalaryUsd)",
+            "type": "integer",
+            "editor": "number",
+            "unit": "US dollars a year",
+            "minimum": 0,
+            "description": "Type the minimum yearly pay in US dollars, for example 150000: a job is kept when the top of its pay range reaches it (hourly and monthly pay count as a year's). Jobs that show no pay, or pay in another currency (EUR, GBP, INR, CAD), are left out. Leave it empty for every pay.",
+            "example": 150000,
+            "nullable": true,
+            "default": null
+        },
+        "withEquity": {
+            "title": "Only with equity (withEquity)",
+            "type": "boolean",
+            "editor": "checkbox",
+            "description": "Tick to keep only jobs that offer equity (stock options), with the range YC shows, such as 0.25% - 1.00%: 29% of YC's open jobs on 2026-11-10.",
+            "default": false,
+            "nullable": true
+        },
+        "visa": {
+            "title": "Visa terms (visa)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the visa terms to keep, as each YC job states them: will-sponsor (the company sponsors a US visa), not-required (no US citizenship or visa needed, such as jobs outside the US) or us-only (US citizen or visa holder only). Leave it empty for every job.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "will-sponsor",
+                    "not-required",
+                    "us-only"
+                ],
+                "enumTitles": [
+                    "Sponsors a visa (will-sponsor)",
+                    "No visa needed (not-required)",
+                    "US citizen or visa only (us-only)"
+                ]
+            },
+            "example": [
+                "will-sponsor"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "maxJobs": {
+            "title": "Number of jobs (maxJobs)",
+            "type": "integer",
+            "editor": "number",
+            "unit": "jobs",
+            "description": "Type how many jobs to get, newest first: 100 by default. Type 0 to get every matching job. Each job is one charged row, so this sets the most a run can cost.",
+            "prefill": 100,
+            "example": 100,
+            "default": 100,
+            "sectionCaption": "How many and how much",
+            "nullable": true
+        },
+        "includeDetails": {
+            "title": "Full details (includeDetails)",
+            "type": "boolean",
+            "editor": "checkbox",
+            "description": "Tick to add the full details of each job: the description as text and HTML, whether it offers equity, and the city, state and country of its first place. A job with details is charged as a Job with details row.",
+            "default": false,
+            "nullable": true
+        },
+        "excludeTerms": {
+            "title": "Leave out words (excludeTerms)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type words that leave a job out when its title has them, one per line, for example senior or intern. Leave it empty to keep every job.",
+            "placeholderValue": "senior",
+            "example": [
+                "senior"
+            ],
+            "default": [],
+            "sectionCaption": "Narrow the search",
+            "nullable": true
+        },
+        "employmentType": {
+            "title": "Job type (employmentType)",
+            "type": "array",
+            "editor": "select",
+            "description": "Pick the job type: full-time, contract or internship, or several. Leave it empty for every job type. YC's job types are full-time, internship, contract and co-founder.",
+            "items": {
+                "type": "string",
+                "enumSuggestedValues": [
+                    "full-time",
+                    "contract",
+                    "intern"
+                ],
+                "enumTitles": [
+                    "Full-time",
+                    "Contract",
+                    "Internship (intern)"
+                ]
+            },
+            "example": [
+                "intern"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "searchDescriptions": {
+            "title": "Wider match (searchDescriptions)",
+            "type": "boolean",
+            "editor": "checkbox",
+            "description": "Tick for a wider match: a job is also kept when its description holds your words as a phrase, not only its title. python then also finds a Backend Engineer job that asks for Python. Slower: each job that can match is opened.",
+            "default": false,
+            "nullable": true
+        },
+        "companies": {
+            "title": "Only these companies (companies)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Type YC company names to search only their jobs, one per line, as YC's directory writes them: Airbnb, Brex, Retool. A company link (ycombinator.com/companies/brex) or a companySlug from a row works too. Leave it empty to search every YC company that is hiring.",
+            "placeholderValue": "Brex",
+            "example": [
+                "Brex"
+            ],
+            "default": [],
+            "nullable": true
+        },
+        "jobUrls": {
+            "title": "Job links to check (jobUrls)",
+            "type": "array",
+            "editor": "stringList",
+            "description": "Paste YC job links (ycombinator.com/companies/.../jobs/...) or Work at a Startup job links (workatastartup.com/jobs/123456) to check whether they are still open, one per line, instead of searching. Each comes back open with the job, closed (the company no longer lists it) or not found.",
+            "placeholderValue": "https://www.ycombinator.com/companies/airbnb/jobs/AbCdEfG-software-engineer",
+            "default": [],
+            "sectionCaption": "Check job links",
+            "nullable": true
+        }
+    }
+}

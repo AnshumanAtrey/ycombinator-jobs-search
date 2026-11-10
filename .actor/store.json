@@ -1,0 +1,86 @@
+{
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md). No actorId yet: the first CI deploy creates the actor, private, and its ID goes here before the next push.",
+    "seoTitle": "Y Combinator Jobs Scraper - Salary, Equity & Visa",
+    "seoDescription": "Search every open job at YC startups on Work at a Startup by title, batch, place and pay. Get salary, equity, visa terms and the exact posting date.",
+    "exampleRunInput": {
+        "searchTerms": [
+            "software engineer"
+        ]
+    },
+    "actorPermissionLevel": "LIMITED_PERMISSIONS",
+    "isPublic": false,
+    "defaultRunOptions": {
+        "build": "latest",
+        "memoryMbytes": 1024,
+        "timeoutSecs": 1800
+    },
+    "defaultRunOptions$comment": "Planned 1 GB, from local runs on 2026-11-10: a run reads every hiring YC company's job list (1,500 calls, 2.8 s of CPU on the laptop), which is CPU-bound on a small share of a core, and one start event covers up to 1 GB. Phase B measures 512 MB, 1 GB and 2 GB on Apify and sets it.",
+    "pricing": {
+        "$comment": "PLACEHOLDER prices, not measured on Apify: the markup ladder (FREE 100%, BRONZE 95%, SILVER 90%, GOLD 85%, PLATINUM and DIAMOND 80%) on local estimates of about $0.002 fixed per run and $0.000008 a row. Phase B measures the cost on Apify and replaces every number here, in README.md and in llms.txt. apply false: store-metadata.mjs does not touch pricing.",
+        "apply": false,
+        "pricingInfos": [
+            {
+                "pricingModel": "PAY_PER_EVENT",
+                "reasonForChange": "First pricing",
+                "pricingPerEvent": {
+                    "actorChargeEvents": {
+                        "job": {
+                            "eventTitle": "Job",
+                            "eventDescription": "One saved job row: title, company, places, remote or office, role, YC batch, pay and equity, visa terms, experience, team size, exact posting date and link. Also one checked job link that is closed or not found.",
+                            "isPrimaryEvent": true,
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 2e-05
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 2e-05
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 1.7e-05
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 1.5e-05
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 1.5e-05
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 1.5e-05
+                                }
+                            }
+                        },
+                        "job-details": {
+                            "eventTitle": "Job with details",
+                            "eventDescription": "One saved job row with full details on: everything in a Job row plus the description as text and HTML, whether it offers equity, and the city, state and country of its first place.",
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 2.5e-05
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 2.5e-05
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 2.1e-05
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 1.8e-05
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 1.8e-05
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 1.8e-05
+                                }
+                            }
+                        },
+                        "apify-actor-start": {
+                            "eventTitle": "Actor Start",
+                            "eventDescription": "Charged when the Actor starts running. Number of events charged depends on Actor memory (one event per GB, minimum one event).",
+                            "eventPriceUsd": 0.005
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

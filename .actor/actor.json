@@ -1,0 +1,630 @@
+{
+    "actorSpecification": 1,
+    "name": "ycombinator-jobs-search",
+    "title": "Y Combinator Jobs Scraper & API - Work at a Startup, YC Jobs",
+    "description": "Y Combinator jobs scraper and API for Work at a Startup, YC's job board: every open YC startup job searched live by title, role, place, batch, visa and pay, newest first. Exact posting dates, salary, equity, experience and team size on every row. No login.",
+    "version": "1.0",
+    "buildTag": "latest",
+    "categories": [
+        "JOBS",
+        "LEAD_GENERATION",
+        "OPEN_SOURCE"
+    ],
+    "input": "./INPUT_SCHEMA.json",
+    "output": "./output_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "minMemoryMbytes": 512,
+    "maxMemoryMbytes": 4096,
+    "storages": {
+        "dataset": {
+            "actorSpecification": 1,
+            "title": "Y Combinator jobs",
+            "description": "One row per job, newest first: title, company, places, remote or office, role, YC batch, pay and equity as shown and as numbers, visa terms, experience, team size, exact posting date and links; with details on, also the description and the city, state and country. The run summary is the OUTPUT record, not a row.",
+            "fields": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job title (title)",
+                        "description": "The job title as the YC company wrote it.",
+                        "example": "Forward Deployed Engineer"
+                    },
+                    "company": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company name (company)",
+                        "description": "The YC company hiring, as YC's directory names it.",
+                        "example": "Phonely"
+                    },
+                    "location": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Main location (location)",
+                        "description": "The job's first place as YC writes it: an office (San Francisco, CA, US), a country (US) or a remote place (Remote (US)).",
+                        "example": "San Francisco, CA, US"
+                    },
+                    "otherLocations": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Other locations (otherLocations)",
+                        "description": "Every other place YC lists for the job, such as Remote (US; CA) next to an office.",
+                        "example": [
+                            "Remote (US)"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "workType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Remote or office (workType)",
+                        "description": "remote when the job lists a Remote place, such as Remote (US), also next to an office; onsite when it names only offices; hybrid when its text says so.",
+                        "example": "onsite"
+                    },
+                    "employmentType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job type (employmentType)",
+                        "description": "full-time, intern or contract, as YC states it; empty for a co-founder role.",
+                        "example": "full-time"
+                    },
+                    "department": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Role area (department)",
+                        "description": "The role area YC files the job under: Engineering, Design, Product, Science, Sales, Marketing, Support, Operations, Recruiting & HR, Finance or Legal.",
+                        "example": "Engineering"
+                    },
+                    "salary": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay as shown (salary)",
+                        "description": "The pay range as YC shows it, in the job's currency and period: $150K - $190K, EUR 60K - 80K, $50 - $80 / hourly. Empty when the job shows no pay (about 1 job in 5).",
+                        "example": "$110K - $130K"
+                    },
+                    "postedAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Posted on (postedAt)",
+                        "description": "When the job was posted, in UTC, to the second: the datePosted of the job's own YC page.",
+                        "example": "2026-11-10T04:23:52Z"
+                    },
+                    "jobUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job link (jobUrl)",
+                        "description": "The job's page on ycombinator.com, with the description and the Apply button.",
+                        "example": "https://www.ycombinator.com/companies/phonely/jobs/bg3qHFa-forward-deployed-engineer"
+                    },
+                    "applyUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Apply link (applyUrl)",
+                        "description": "YC's apply link for the job: it opens Work at a Startup's application after signing in with a YC account. Empty for a checked link that is closed or not found.",
+                        "example": "https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D121729"
+                    },
+                    "status": {
+                        "type": "string",
+                        "title": "Still open? (status)",
+                        "description": "open for every search result (read live during the run). For a checked link: open, closed (the company no longer lists it) or not found (no such company or job).",
+                        "example": "open"
+                    },
+                    "platform": {
+                        "type": "string",
+                        "title": "Job site (platform)",
+                        "description": "The site the job came from: always ycombinator here.",
+                        "example": "ycombinator"
+                    },
+                    "companySlug": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company address (companySlug)",
+                        "description": "The company's address on YC: ycombinator.com/companies/<companySlug>. Type it in Only these companies to search that company again.",
+                        "example": "phonely"
+                    },
+                    "companyWebsite": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company website (companyWebsite)",
+                        "description": "The company's own website, from YC's directory.",
+                        "example": "https://phonely.ai"
+                    },
+                    "jobId": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job ID (jobId)",
+                        "description": "YC's number for the job (the number of its Work at a Startup link); it grows with posting, so a higher ID is a newer job.",
+                        "example": "121729"
+                    },
+                    "checkedAt": {
+                        "type": "string",
+                        "title": "Checked at (checkedAt)",
+                        "description": "When the run read YC, in UTC.",
+                        "example": "2026-11-10T10:23:56+00:00"
+                    },
+                    "experienceMin": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Experience from (experienceMin)",
+                        "description": "The fewest years of experience the job asks for: 3 for 3+ years, 0 for Any (new grads ok) and for internships.",
+                        "example": 3
+                    },
+                    "experienceMax": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Experience up to (experienceMax)",
+                        "description": "The most years the job asks for: YC states a minimum only, so this is empty, except 0 for internships.",
+                        "example": null
+                    },
+                    "batch": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "YC batch (batch)",
+                        "description": "The company's YC batch: W for Winter, S for Summer, F for Fall, P for Spring, and the year, such as S24 for Summer 2024.",
+                        "example": "S24"
+                    },
+                    "roleType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Kind of role (roleType)",
+                        "description": "The kind of role within its area, on every engineering, design, recruiting and science job: Full stack, Backend, Machine learning, Product design, Recruiter.",
+                        "example": "Full stack"
+                    },
+                    "equity": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Equity as shown (equity)",
+                        "description": "The equity (stock options) range as YC shows it, such as 0.25% - 1.00%. Empty when the job offers none or does not say.",
+                        "example": "0.07% - 0.30%"
+                    },
+                    "equityMin": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Equity from, % (equityMin)",
+                        "description": "The low end of the equity range, in percent.",
+                        "example": 0.07
+                    },
+                    "equityMax": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Equity up to, % (equityMax)",
+                        "description": "The high end of the equity range, in percent.",
+                        "example": 0.3
+                    },
+                    "visa": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Visa terms (visa)",
+                        "description": "The visa terms YC states for the job: Will sponsor, US citizenship/visa not required, or US citizen/visa only.",
+                        "example": "US citizen/visa only"
+                    },
+                    "schoolYear": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Student year (schoolYear)",
+                        "description": "For an internship, the school year it asks for: Any, Freshman and above, Junior and above.",
+                        "example": null
+                    },
+                    "skills": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Skills asked for (skills)",
+                        "description": "The skills the company tagged on the job (on about 1 job in 5).",
+                        "example": [
+                            "Python",
+                            "React"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "companyOneLiner": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "What it does (companyOneLiner)",
+                        "description": "The company's one-line description on YC.",
+                        "example": "AI call centers"
+                    },
+                    "teamSize": {
+                        "type": [
+                            "integer",
+                            "null"
+                        ],
+                        "title": "Team size (teamSize)",
+                        "description": "How many people the company has, from YC's directory.",
+                        "example": 10
+                    },
+                    "companyStage": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company stage (companyStage)",
+                        "description": "The company's stage in YC's directory: early, growth or public.",
+                        "example": "early"
+                    },
+                    "industry": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company industry (industry)",
+                        "description": "The company's industries in YC's directory, such as B2B, Fintech, Healthcare.",
+                        "example": "B2B"
+                    },
+                    "workAtAStartupUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Work at a Startup (workAtAStartupUrl)",
+                        "description": "The same job on Work at a Startup (workatastartup.com/jobs/<jobId>).",
+                        "example": "https://www.workatastartup.com/jobs/121729"
+                    },
+                    "salaryMin": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Lowest pay (salaryMin)",
+                        "description": "The low end of the pay range as a number, in salaryCurrency per salaryPeriod. Empty when the text cannot be a year's pay, such as $1 or $120 typed without K.",
+                        "example": 110000
+                    },
+                    "salaryMax": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "title": "Highest pay (salaryMax)",
+                        "description": "The high end of the pay range as a number.",
+                        "example": 130000
+                    },
+                    "salaryCurrency": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay currency (salaryCurrency)",
+                        "description": "The currency of the pay: USD, EUR, GBP, INR, CAD.",
+                        "example": "USD"
+                    },
+                    "salaryPeriod": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Pay period (salaryPeriod)",
+                        "description": "year, month or hour, as the pay text says (year unless it says / monthly or / hourly).",
+                        "example": "year"
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job description (description)",
+                        "description": "The job description as plain text, with details on.",
+                        "example": "At some point in the future, every business will answer their phone with voice AI. We are making sure that when they build that AI agent..."
+                    },
+                    "descriptionHtml": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Description as HTML (descriptionHtml)",
+                        "description": "The job description in HTML, as YC shows it, with details on.",
+                        "example": "<p>At some point in the future, every business will answer their phone with voice AI...</p>"
+                    },
+                    "offersEquity": {
+                        "type": [
+                            "boolean",
+                            "null"
+                        ],
+                        "title": "Offers equity? (offersEquity)",
+                        "description": "With details on: true when the job shows an equity range.",
+                        "example": true
+                    },
+                    "city": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Town or city (city)",
+                        "description": "With details on: the city of the job's first office.",
+                        "example": "San Francisco"
+                    },
+                    "region": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "State or region (region)",
+                        "description": "With details on: the state or region of the job's first office.",
+                        "example": "California"
+                    },
+                    "country": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Country name (country)",
+                        "description": "With details on: the country of the job's first place.",
+                        "example": "United States"
+                    },
+                    "countryCode": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Country code (countryCode)",
+                        "description": "With details on: the two-letter code of that country.",
+                        "example": "US"
+                    }
+                }
+            },
+            "views": {
+                "jobs": {
+                    "title": "Jobs",
+                    "description": "One row per job: what it is, where, the company and its YC batch, the pay, equity and visa terms, and when it was posted, with its link.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "batch",
+                            "location",
+                            "workType",
+                            "salary",
+                            "equity",
+                            "visa",
+                            "experienceMin",
+                            "postedAt",
+                            "jobUrl"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "batch": {
+                                "label": "YC batch (batch)",
+                                "format": "text"
+                            },
+                            "location": {
+                                "label": "Main location (location)",
+                                "format": "text"
+                            },
+                            "workType": {
+                                "label": "Remote or office (workType)",
+                                "format": "text"
+                            },
+                            "salary": {
+                                "label": "Pay as shown (salary)",
+                                "format": "text"
+                            },
+                            "equity": {
+                                "label": "Equity as shown (equity)",
+                                "format": "text"
+                            },
+                            "visa": {
+                                "label": "Visa terms (visa)",
+                                "format": "text"
+                            },
+                            "experienceMin": {
+                                "label": "Experience from (experienceMin)",
+                                "format": "number"
+                            },
+                            "postedAt": {
+                                "label": "Posted on (postedAt)",
+                                "format": "date"
+                            },
+                            "jobUrl": {
+                                "label": "Job link (jobUrl)",
+                                "format": "link"
+                            }
+                        }
+                    }
+                },
+                "details": {
+                    "title": "Details",
+                    "description": "The description, pay as numbers, the company and every other field of each job.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "companyOneLiner",
+                            "teamSize",
+                            "companyStage",
+                            "industry",
+                            "department",
+                            "roleType",
+                            "employmentType",
+                            "otherLocations",
+                            "salaryMin",
+                            "salaryMax",
+                            "salaryCurrency",
+                            "salaryPeriod",
+                            "equityMin",
+                            "equityMax",
+                            "skills",
+                            "description",
+                            "applyUrl",
+                            "workAtAStartupUrl",
+                            "jobId",
+                            "status",
+                            "checkedAt"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "companyOneLiner": {
+                                "label": "What it does (companyOneLiner)",
+                                "format": "text"
+                            },
+                            "teamSize": {
+                                "label": "Team size (teamSize)",
+                                "format": "number"
+                            },
+                            "companyStage": {
+                                "label": "Company stage (companyStage)",
+                                "format": "text"
+                            },
+                            "industry": {
+                                "label": "Company industry (industry)",
+                                "format": "text"
+                            },
+                            "department": {
+                                "label": "Role area (department)",
+                                "format": "text"
+                            },
+                            "roleType": {
+                                "label": "Kind of role (roleType)",
+                                "format": "text"
+                            },
+                            "employmentType": {
+                                "label": "Job type (employmentType)",
+                                "format": "text"
+                            },
+                            "otherLocations": {
+                                "label": "Other locations (otherLocations)",
+                                "format": "array"
+                            },
+                            "salaryMin": {
+                                "label": "Lowest pay (salaryMin)",
+                                "format": "number"
+                            },
+                            "salaryMax": {
+                                "label": "Highest pay (salaryMax)",
+                                "format": "number"
+                            },
+                            "salaryCurrency": {
+                                "label": "Pay currency (salaryCurrency)",
+                                "format": "text"
+                            },
+                            "salaryPeriod": {
+                                "label": "Pay period (salaryPeriod)",
+                                "format": "text"
+                            },
+                            "equityMin": {
+                                "label": "Equity from, % (equityMin)",
+                                "format": "number"
+                            },
+                            "equityMax": {
+                                "label": "Equity up to, % (equityMax)",
+                                "format": "number"
+                            },
+                            "skills": {
+                                "label": "Skills asked for (skills)",
+                                "format": "array"
+                            },
+                            "description": {
+                                "label": "Job description (description)",
+                                "format": "text"
+                            },
+                            "applyUrl": {
+                                "label": "Apply link (applyUrl)",
+                                "format": "link"
+                            },
+                            "workAtAStartupUrl": {
+                                "label": "Work at a Startup (workAtAStartupUrl)",
+                                "format": "link"
+                            },
+                            "jobId": {
+                                "label": "Job ID (jobId)",
+                                "format": "text"
+                            },
+                            "status": {
+                                "label": "Still open? (status)",
+                                "format": "text"
+                            },
+                            "checkedAt": {
+                                "label": "Checked at (checkedAt)",
+                                "format": "date"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "keyValueStore": {
+            "actorKeyValueStoreSchemaVersion": 1,
+            "title": "Run summary",
+            "description": "The OUTPUT record: how many YC jobs were read, matched and saved, the checked links, the notes about how the input was read and the settings used, YC batch, role, visa and pay filters included.",
+            "collections": {
+                "summary": {
+                    "title": "Run summary (OUTPUT)",
+                    "description": "Status, message, counts of jobs read, matched and saved, checked links, notes and settings.",
+                    "key": "OUTPUT"
+                }
+            }
+        }
+    }
+}
