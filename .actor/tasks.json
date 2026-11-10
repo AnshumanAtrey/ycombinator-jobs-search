@@ -1,5 +1,5 @@
 {
-    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only, and only once the actor is public). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries yc. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json.",
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only, and only once the actor is public). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Task names are unique across the whole Apify account, so each carries yc. Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema. options follow defaultRunOptions in store.json. Tasks marked publish false stay saved but off the Store: the account publishes at most 100 pages across all actors, so each actor keeps 2 or more by its earnings and search traffic (2026-11-11).",
     "options": {
         "build": "latest",
         "memoryMbytes": 1024,
@@ -8,6 +8,7 @@
     "tasks": [
         {
             "name": "yc-jobs-last-24-hours",
+            "publish": false,
             "title": "Get the newest Y Combinator startup jobs of the last 24 hours",
             "description": "Get every job YC startups posted on Work at a Startup in the last day, newest first, with the company, its YC batch, pay, equity, visa terms and the exact posting time. Schedule it daily for a fresh feed of YC jobs.",
             "input": {
@@ -38,6 +39,7 @@
         },
         {
             "name": "yc-software-engineer-jobs-san-francisco",
+            "publish": false,
             "title": "Find software engineer jobs at YC startups in San Francisco",
             "description": "Search Work at a Startup for software engineer jobs at Y Combinator startups in San Francisco, newest first, with pay, equity, the YC batch, visa terms and the exact posting date. Every title holds both words.",
             "input": {
@@ -73,6 +75,7 @@
         },
         {
             "name": "yc-remote-jobs",
+            "publish": false,
             "title": "Find remote jobs at Y Combinator startups",
             "description": "Get the newest remote jobs at YC startups from Work at a Startup: jobs that list a Remote place, such as Remote (US) or Remote (anywhere), with the company, pay, equity and the countries the job is open to.",
             "input": {
@@ -171,6 +174,7 @@
         },
         {
             "name": "yc-startup-internships",
+            "publish": false,
             "title": "Find internships at Y Combinator startups",
             "description": "Get the newest internships at YC startups from Work at a Startup, with the company, its batch, the pay, the student year asked for and the exact posting date.",
             "input": {
@@ -204,6 +208,7 @@
         },
         {
             "name": "yc-jobs-latest-batches",
+            "publish": false,
             "title": "Find jobs at startups of the latest YC batches",
             "description": "Get the newest jobs at companies of YC batches from 2025 and 2026 (Winter, Spring, Summer and Fall), from Work at a Startup, with pay, equity, team size and visa terms.",
             "input": {
@@ -238,6 +243,7 @@
         },
         {
             "name": "yc-machine-learning-jobs",
+            "publish": false,
             "title": "Find machine learning and AI engineer jobs at YC startups",
             "description": "Get the newest machine learning and AI engineering jobs at Y Combinator startups, as YC files them on Work at a Startup, with pay, equity, the company and its batch.",
             "input": {
@@ -272,6 +278,7 @@
         },
         {
             "name": "yc-startup-jobs-india",
+            "publish": false,
             "title": "Find jobs at Y Combinator startups in India",
             "description": "Get the newest jobs at YC startups in India, in cities such as Bengaluru, Mumbai, Delhi and Hyderabad or remote in India, from Work at a Startup, with pay in rupees or dollars and the exact posting date.",
             "input": {
@@ -304,6 +311,7 @@
         },
         {
             "name": "yc-product-manager-jobs",
+            "publish": false,
             "title": "Find product manager jobs at Y Combinator startups",
             "description": "Search Work at a Startup for product manager jobs at YC startups, newest first, with pay, equity, the company, its batch and team size.",
             "input": {
