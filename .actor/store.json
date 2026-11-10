@@ -1,5 +1,6 @@
 {
-    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md). No actorId yet: the first CI deploy creates the actor, private, and its ID goes here before the next push.",
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs (manager/rules/SEO.md). actorId pins the actor created by the first deploy (2026-11-10, build 1.0.1), so a rename keeps the same actor.",
+    "actorId": "c7XwfzQombrz9YrXw",
     "seoTitle": "Y Combinator Jobs Scraper - Salary, Equity & Visa",
     "seoDescription": "Search every open job at YC startups on Work at a Startup by title, batch, place and pay. Get salary, equity, visa terms and the exact posting date.",
     "exampleRunInput": {
