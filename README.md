@@ -4,6 +4,13 @@ Y Combinator jobs scraper and API: search every open job at YC startups on Work 
 
 Use it as a Work at a Startup API or YC jobs API with no login and no API key, a workatastartup.com and ycombinator.com/jobs scraper, or a daily YC startup job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent over MCP, and export JSON, CSV or Excel. It reads the job list of every YC company that is hiring (1,500 companies, 6,300+ open jobs on 2026-11-10) at the moment of your run. Available as an [Apify Actor](https://apify.com/anshumanatrey/ycombinator-jobs-search). $0.000019 per job, the same with full details, and $0.015 per run start at the default 1 GB.
 
+**Use it from an AI assistant:**
+
+- **Claude** (claude.ai and the desktop app): [Add Y Combinator Jobs to Claude](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Y%20Combinator%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fycombinator-jobs-search), click Continue, sign in to Apify, Allow, and ask in plain words.
+- **Claude Code:** `claude mcp add --transport http ycombinator-jobs-search "https://mcp.apify.com?tools=anshumanatrey/ycombinator-jobs-search"`, then run `/mcp` to sign in to Apify.
+- **Codex:** `codex mcp add ycombinator-jobs-search --url "https://mcp.apify.com?tools=anshumanatrey/ycombinator-jobs-search"`, then `codex mcp login ycombinator-jobs-search`.
+- **Any other MCP client:** `https://mcp.apify.com?tools=anshumanatrey/ycombinator-jobs-search`, signed in with Apify or an `Authorization: Bearer <APIFY_TOKEN>` header.
+
 ## What does it do?
 
 - **Every open YC job, live.** It reads YC's company directory for every company that is hiring, then each company's job list: 6,316 jobs at 1,500 companies on 2026-11-10, against the 6,323 Work at a Startup counted itself that hour (608 of 608 jobs sampled from its own role pages and search were found).
